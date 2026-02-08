@@ -7,94 +7,104 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <style>
-        /* Modern Professional Theme */
-        :root {
-            --primary: #4f46e5; /* Indigo 600 */
-            --secondary: #1f2937; /* Gray 800 */
-        }
-        
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: #f9fafb;
-        }
-
-        /* Professional Gradient for Header/Footer */
+        /* Custom gradient background */
         .gradient-bg {
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); /* Indigo 950 to 900 */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        
+        /* Hover effect for cards */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
         .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        /* Drawer (accordion) styling */
+        .drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out; /* Unified transition for smooth open/close */
+            opacity: 0; /* Initially hidden */
+            visibility: hidden; /* Ensure it's not interactive when hidden */
         }
-        
-        /* Animation utilities */
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
+        .drawer.open {
+            max-height: 2000px; /* Increased max-height to ensure all content fits */
+            opacity: 1; /* Fully visible */
+            visibility: visible; /* Make it interactive when open */
         }
-        
+        /* Fade in up animation */
         @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        /* Text shadow for main titles */
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        /* Print styles to hide non-essential elements */
+        @media print {
+            body { margin: 0; padding: 0; }
+            .no-print { display: none; }
+        }
+
+        /* Skill bar specific styles */
+        .skill-bar-container {
+            background-color: #e2e8f0; /* bg-gray-200 */
+            border-radius: 9999px; /* rounded-full */
+            height: 8px; /* h-2 */
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 9999px; /* rounded-full */
+            transition: width 0.5s ease-in-out;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); /* A nice gradient for the fill */
+        }
+        .skill-level-text {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* font-semibold */
+            color: #4a5568; /* text-gray-700 */
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-    <!-- Header/Hero Section -->
-    <header class="gradient-bg text-white pb-20 pt-24 md:pt-32 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div class="absolute top-10 left-10 w-32 h-32 rounded-full border-4 border-white"></div>
-            <div class="absolute bottom-10 right-10 w-64 h-64 rounded-full border-8 border-white"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full border-2 border-white opacity-20"></div>
-        </div>
-        
-        <div class="container mx-auto px-4 md:px-6 relative z-10">
-            <div class="flex flex-col items-center animate-fadeInUp">
-                <!-- Profile Image with pulsing effect -->
-                <div class="relative mb-6 md:mb-8 group">
-                    <div class="absolute inset-0 bg-white opacity-20 rounded-full blur-xl group-hover:opacity-30 transition duration-500"></div>
-                    <img src="images/vianney.jpg" alt="ANANI Mathieu Ange Vianney" class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white shadow-2xl object-cover relative z-10 transform transition duration-500 hover:scale-105">
-                    <div class="absolute bottom-2 right-2 md:bottom-3 md:right-3 w-6 h-6 md:w-8 md:h-8 bg-green-400 border-4 border-white rounded-full z-20" title="Disponible pour de nouveaux projets"></div>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header Section -->
+    <header class="gradient-bg text-white py-12 md:py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center animate-fadeInUp">
+                <div class="w-24 h-24 md:w-32 md:h-32 bg-white rounded-full mx-auto mb-4 md:mb-6 flex items-center justify-center shadow-xl">
+                    <i class="fas fa-user-tie text-5xl md:text-6xl text-purple-600"></i>
                 </div>
+                <h1 class="text-2xl md:text-6xl font-bold mb-2 md:mb-4 text-shadow">ANANI Mathieu Ange Vianney</h1>
+                <p class="text-base md:text-2xl mb-4 md:mb-6 text-purple-200">Développeur Full Stack | Cybersécurité | Intelligence Artificielle</p>
+                <p class="text-sm md:text-lg mb-6 md:mb-8"><i class="fas fa-map-marker-alt mr-2"></i>Hêvié, Akossavié - Bénin</p>
                 
-                <h1 class="text-3xl md:text-5xl font-extrabold mb-3 md:mb-4 text-center tracking-tight leading-tight">
-                    ANANI Mathieu Ange Vianney
-                </h1>
-                <p class="text-lg md:text-2xl text-purple-20 mb-6 md:mb-8 text-center font-light">
-                    Développeur Full Stack & Expert Cybersécurité
-                </p>
-                
-                <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12">
-                    <a href="#contact" class="bg-white text-purple-700 px-6 py-2 md:px-8 md:py-3 rounded-full font-bold hover:bg-opacity-90 transition shadow-lg transform hover:-translate-y-1 flex items-center text-sm md:text-base">
-                        <i class="fas fa-paper-plane mr-2"></i> Me Contacter
+                <!-- Contact Info -->
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-6 md:mb-8">
+                    <a href="tel:0169496885" class="bg-white bg-opacity-20 px-2 py-0.5 rounded-full hover:bg-opacity-30 transition text-sm md:px-4 md:py-2 md:text-base">
+                        <i class="fas fa-phone mr-1 md:mr-2"></i>01 69 49 68 85
                     </a>
-                    <a href="#projects" class="bg-transparent border-2 border-white text-white px-6 py-2 md:px-8 md:py-3 rounded-full font-bold hover:bg-white hover:text-purple-700 transition shadow-lg transform hover:-translate-y-1 flex items-center text-sm md:text-base">
-                        <i class="fas fa-code mr-2"></i> Voir mes Projets
+                    <a href="https://wa.me/2290161086894" target="_blank" class="bg-green-500 px-2 py-0.5 rounded-full hover:bg-green-600 transition text-sm md:px-4 md:py-2 md:text-base">
+                        <i class="fab fa-whatsapp mr-1 md:mr-2"></i>WhatsApp
                     </a>
-                    <a href="CV.pdf" target="_blank" class="bg-purple-600 bg-opacity-50 border-2 border-purple-400 text-white px-6 py-2 md:px-8 md:py-3 rounded-full font-bold hover:bg-purple-500 transition shadow-lg transform hover:-translate-y-1 flex items-center text-sm md:text-base backdrop-filter backdrop-blur-sm">
-                        <i class="fas fa-download mr-2"></i> Mon CV
+                    <a href="mailto:ananivianney80@gmail.com" class="bg-white bg-opacity-20 px-2 py-0.5 rounded-full hover:bg-opacity-30 transition text-sm md:px-4 md:py-2 md:text-base">
+                        <i class="fas fa-envelope mr-1 md:mr-2"></i>Email
                     </a>
-                </div>
-                
-                <!-- Social Links -->
-                <div class="flex space-x-4 md:space-x-6">
-                    <a href="https://github.com/ANANI Vianneyaz/Portfolio" target="_blank" class="text-white hover:text-purple-200 transition transform hover:scale-110">
-                        <i class="fab fa-github text-2xl md:text-3xl"></i>
+                    <a href="https://www.linkedin.com/in/vianney-anani-1845882a2" target="_blank" class="bg-blue-600 px-2 py-0.5 rounded-full hover:bg-blue-700 transition text-sm md:px-4 md:py-2 md:text-base">
+                        <i class="fab fa-linkedin mr-1 md:mr-2"></i>LinkedIn
                     </a>
-                    <a href="https://www.linkedin.com/in/vianney-anani-1845882a2" target="_blank" class="text-white hover:text-purple-200 transition transform hover:scale-110">
-                        <i class="fab fa-linkedin text-2xl md:text-3xl"></i>
-                    </a>
-                    <a href="mailto:ananivianney80@gmail.com" class="text-white hover:text-purple-200 transition transform hover:scale-110">
-                        <i class="fas fa-envelope text-2xl md:text-3xl"></i>
+                    <a href="https://github.com/ANANI Vianneyaz/Portfolio" target="_blank" class="bg-gray-800 px-2 py-0.5 rounded-full hover:bg-gray-900 transition text-sm md:px-4 md:py-2 md:text-base">
+                        <i class="fab fa-github mr-1 md:mr-2"></i>GitHub
                     </a>
                 </div>
             </div>
@@ -136,138 +146,83 @@
         </div>
     </section>
 
-    <!-- Skills Section - Design Pro & Minimaliste -->
-    <section class="py-16 bg-gray-50 border-t border-gray-200">
+    <!-- Skills Section -->
+    <section class="py-12 md:py-16 bg-gray-100">
         <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center mb-16">
-                <span class="text-indigo-600 font-semibold tracking-wider text-sm uppercase">Expertise</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Compétences Techniques</h2>
-                <div class="w-20 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
-            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-gray-800">Compétences Techniques</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <!-- Backend & Langages -->
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- Programming Languages Card -->
+                <div class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl shadow-lg p-6 md:p-8 card-hover border-l-4 border-purple-600">
                     <div class="flex items-center mb-6">
-                        <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 mr-4">
-                            <i class="fas fa-server text-lg"></i>
+                        <div class="bg-purple-600 text-white rounded-lg p-3 mr-4">
+                            <i class="fas fa-code text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">Backend & Langages</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Langages</h3>
                     </div>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700 font-medium">PHP / Laravel</span>
-                                <span class="text-gray-400 text-sm">Expert</span>
-                            </div>
-                            <div class="w-full bg-gray-100 rounded-full h-1.5">
-                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700 font-medium">Python / Flask</span>
-                                <span class="text-gray-400 text-sm">Avancé</span>
-                            </div>
-                            <div class="w-full bg-gray-100 rounded-full h-1.5">
-                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700 font-medium">Java / C++</span>
-                                <span class="text-gray-400 text-sm">Intermédiaire</span>
-                            </div>
-                            <div class="w-full bg-gray-10 rounded-full h-1.5">
-                                <div class="bg-gray-400 h-1.5 rounded-full" style="width: 70%"></div>
-                            </div>
-                        </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-purple-700 shadow-sm border border-purple-200">HTML/CSS</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-purple-700 shadow-sm border border-purple-200">JavaScript</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-purple-700 shadow-sm border border-purple-200">PHP</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-purple-700 shadow-sm border border-purple-200">Python</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-purple-700 shadow-sm border border-purple-200">Java</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-purple-700 shadow-sm border border-purple-200">C++</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-purple-700 shadow-sm border border-purple-200">SQL</span>
                     </div>
                 </div>
 
-                <!-- Frontend & CMS -->
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                <!-- Web Development Card -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl shadow-lg p-6 md:p-8 card-hover border-l-4 border-blue-600">
                     <div class="flex items-center mb-6">
-                        <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 mr-4">
-                            <i class="fas fa-laptop-code text-lg"></i>
+                        <div class="bg-blue-600 text-white rounded-lg p-3 mr-4">
+                            <i class="fas fa-globe text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">Frontend & CMS</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Web & Frameworks</h3>
                     </div>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700 font-medium">HTML5 / CSS3 / Tailwind</span>
-                                <span class="text-gray-400 text-sm">Expert</span>
-                            </div>
-                            <div class="w-full bg-gray-100 rounded-full h-1.5">
-                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 98%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700 font-medium">JavaScript</span>
-                                <span class="text-gray-400 text-sm">Expert</span>
-                            </div>
-                            <div class="w-full bg-gray-100 rounded-full h-1.5">
-                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700 font-medium">WordPress / CMS</span>
-                                <span class="text-gray-400 text-sm">Expert</span>
-                            </div>
-                            <div class="w-full bg-gray-100 rounded-full h-1.5">
-                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 92%"></div>
-                            </div>
-                        </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-blue-700 shadow-sm border border-blue-200">Full Stack</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-blue-700 shadow-sm border border-blue-200">MySQL</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-blue-700 shadow-sm border border-blue-200">Bootstrap</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-blue-700 shadow-sm border border-blue-200">Flask</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-blue-700 shadow-sm border border-blue-200">WordPress</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-blue-700 shadow-sm border border-blue-200">POO</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-blue-700 shadow-sm border border-blue-200">REST API</span>
                     </div>
                 </div>
 
-                <!-- Cybersécurité -->
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                <!-- Cybersecurity Card -->
+                <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl shadow-lg p-6 md:p-8 card-hover border-l-4 border-red-600">
                     <div class="flex items-center mb-6">
-                        <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 mr-4">
-                            <i class="fas fa-shield-alt text-lg"></i>
+                        <div class="bg-red-600 text-white rounded-lg p-3 mr-4">
+                            <i class="fas fa-shield-alt text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">Cybersécurité</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Cybersécurité</h3>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center p-3 bg-gray-50 rounded border border-gray-100">
-                            <i class="fas fa-check text-green-500 mr-3 text-sm"></i>
-                            <span class="text-gray-700 text-sm font-medium">Pentesting</span>
-                        </div>
-                        <div class="flex items-center p-3 bg-gray-50 rounded border border-gray-100">
-                            <i class="fas fa-check text-green-500 mr-3 text-sm"></i>
-                            <span class="text-gray-700 text-sm font-medium">Audit Vulnérabilités</span>
-                        </div>
-                        <div class="flex items-center p-3 bg-gray-50 rounded border border-gray-100">
-                            <i class="fas fa-check text-green-500 mr-3 text-sm"></i>
-                            <span class="text-gray-700 text-sm font-medium">Sécurité Réseau</span>
-                        </div>
-                        <div class="flex items-center p-3 bg-gray-50 rounded border border-gray-100">
-                            <i class="fas fa-check text-green-500 mr-3 text-sm"></i>
-                            <span class="text-gray-700 text-sm font-medium">Hacking Éthique</span>
-                        </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-red-700 shadow-sm border border-red-200">Pentesting</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-red-700 shadow-sm border border-red-200">Analyse Vulnérabilités</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-red-700 shadow-sm border border-red-200">Surveillance</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-red-700 shadow-sm border border-red-200">Injection SQL</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-red-700 shadow-sm border border-red-200">XSS</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-red-700 shadow-sm border border-red-200">Hacking Éthique</span>
                     </div>
                 </div>
 
-                <!-- Outils & DevOps -->
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                <!-- Tools Card -->
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl shadow-lg p-6 md:p-8 card-hover border-l-4 border-green-600">
                     <div class="flex items-center mb-6">
-                        <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 mr-4">
-                            <i class="fas fa-tools text-lg"></i>
+                        <div class="bg-green-600 text-white rounded-lg p-3 mr-4">
+                            <i class="fas fa-tools text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">Outils & Environnement</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Outils & Technologies</h3>
                     </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Git</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Docker</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Linux</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">MySQL</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">VS Code</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Windows API</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Réseau</span>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-green-700 shadow-sm border border-green-200"><i class="fab fa-git-alt mr-1"></i>Git/GitHub</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-green-700 shadow-sm border border-green-200">VS Code</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-green-700 shadow-sm border border-green-200">XAMPP</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-green-700 shadow-sm border border-green-200">Windows API</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-green-700 shadow-sm border border-green-200">Réseau</span>
+                        <span class="px-4 py-2 bg-white rounded-full text-sm font-semibold text-green-700 shadow-sm border border-green-200">Docker</span>
                     </div>
                 </div>
             </div>
@@ -298,18 +253,34 @@
                             Lors de ce stage, j'ai participé au développement de plusieurs plateformes officielles du ministère, 
                             contribuant à la conception, l'intégration front/back, la sécurisation et l'hébergement de ces plateformes.
                         </p>
-                        <h4 class="font-bold mb-2 text-sm md:text-base">Tâches principales :</h4>
-                        <ul class="list-disc pl-5 mb-4 text-sm md:text-base text-gray-700">
-                            <li class="mb-1">Développement et maintenance d'applications web avec PHP, MySQL et Bootstrap.</li>
-                            <li class="mb-1">Participation à la mise en place de la plateforme de gestion des carrières "Gestion AME".</li>
-                            <li class="mb-1">Collaboration avec l'équipe technique pour l'intégration de nouvelles fonctionnalités.</li>
-                            <li class="mb-1">Résolution de bugs et optimisation des performances.</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-200 px-2 py-1 rounded text-xs md:text-sm">PHP</span>
-                            <span class="bg-gray-200 px-2 py-1 rounded text-xs md:text-sm">MySQL</span>
-                            <span class="bg-gray-200 px-2 py-1 rounded text-xs md:text-sm">Bootstrap</span>
-                            <span class="bg-gray-200 px-2 py-1 rounded text-xs md:text-sm">Travail en équipe</span>
+                        
+                        <h4 class="font-bold mb-2 md:mb-3 text-base md:text-lg">Plateformes développées :</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
+                            <div class="bg-white p-3 md:p-4 rounded border flex flex-col items-center text-center">
+                                <i class="fas fa-globe text-xl md:text-2xl text-blue-500 mb-1 md:mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base text-gray-800">Portail principal</p>
+                                <a href="https://portail.enseignementsecondaire.bj" target="_blank" class="text-blue-600 hover:underline text-xs md:text-sm truncate w-full">portail.enseignementsecondaire.bj</a>
+                            </div>
+                            <div class="bg-white p-3 md:p-4 rounded border flex flex-col items-center text-center">
+                                <i class="fas fa-exclamation-triangle text-xl md:text-2xl text-orange-500 mb-1 md:mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base text-gray-800">Plateforme de dénonciation</p>
+                                <a href="https://mesftpdenonciation.enseignementsecondaire.bj" target="_blank" class="text-blue-600 hover:underline text-xs md:text-sm truncate w-full">mesftpdenonciation.enseignementsecondaire.bj</a>
+                            </div>
+                            <div class="bg-white p-3 md:p-4 rounded border flex flex-col items-center text-center">
+                                <i class="fas fa-cog text-xl md:text-2xl text-gray-500 mb-1 md:mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base text-gray-800">Gestion de domaine</p>
+                                <a href="https://gestiondomaine.enseignementsecondaire.bj" target="_blank" class="text-blue-600 hover:underline text-xs md:text-sm truncate w-full">gestiondomaine.enseignementsecondaire.bj</a>
+                            </div>
+                        </div>
+                        
+                        <h4 class="font-bold mb-2 md:mb-3 text-base md:text-lg">Compétences renforcées :</h4>
+                        <div class="grid md:grid-cols-2 gap-1.5 md:gap-2 mb-3 md:mb-4">
+                            <div class="flex items-center p-1 bg-gray-50 rounded text-sm"><i class="fas fa-check text-green-500 mr-1.5 md:mr-2"></i>Développement Full Stack (PHP, HTML/CSS, JavaScript)</div>
+                            <div class="flex items-center p-1 bg-gray-50 rounded text-sm"><i class="fas fa-check text-green-500 mr-1.5 md:mr-2"></i>Gestion de bases de données</div>
+                            <div class="flex items-center p-1 bg-gray-50 rounded text-sm"><i class="fas fa-check text-green-500 mr-1.5 md:mr-2"></i>Tests d'intrusion (Pentest)</div>
+                            <div class="flex items-center p-1 bg-gray-50 rounded text-sm"><i class="fas fa-check text-green-500 mr-1.5 md:mr-2"></i>Sécurisation d'applications web</div>
+                            <div class="flex items-center p-1 bg-gray-50 rounded text-sm"><i class="fas fa-check text-green-500 mr-1.5 md:mr-2"></i>Détection et correction de failles (SQL, XSS)</div>
+                            <div class="flex items-center p-1 bg-gray-50 rounded text-sm"><i class="fas fa-lock text-red-500 mr-1.5 md:mr-2"></i>Hacking Éthique</div>
                         </div>
                     </div>
                 </div>
@@ -318,10 +289,34 @@
     </section>
 
     <!-- Certifications Section -->
-    <section class="py-12 md:py-16 bg-gray-50">
+    <section class="py-12 md:py-16 bg-gray-100">
         <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-gray-800">Certifications</h2>
-            <div class="grid md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
+                <!-- Deep Learning Python Certification -->
+                <a href="https://www.udemy.com/certificate/UC-6fe85bba-4e52-4d52-9109-68dbd9620ad1/" target="_blank" class="block bg-white rounded-lg shadow-md p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-3 md:mb-4">
+                        <i class="fas fa-brain text-2xl md:text-3xl text-purple-600 mr-3 md:mr-4"></i>
+                        <div>
+                            <h3 class="font-bold text-base md:text-lg">Deep Learning Python</h3>
+                            <p class="text-sm text-gray-600">Udemy - Décembre 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-blue-600 hover:underline text-xs md:text-sm mt-3 md:mt-4">Voir la certification <i class="fas fa-external-link-alt ml-1"></i></p>
+                </a>
+                
+                <!-- Développement Web Certification -->
+                <a href="https://www.sololearn.com/fr/certificates/CC-H3NXQKXS" target="_blank" class="block bg-white rounded-lg shadow-md p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-3 md:mb-4">
+                        <i class="fas fa-code text-2xl md:text-3xl text-blue-600 mr-3 md:mr-4"></i>
+                        <div>
+                            <h3 class="font-bold text-base md:text-lg">Développement Web</h3>
+                            <p class="text-sm text-gray-600">Sololearn - Décembre 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-blue-600 hover:underline text-xs md:text-sm mt-3 md:mt-4">Voir la certification <i class="fas fa-external-link-alt ml-1"></i></p>
+                </a>
+                
                 <!-- Hacking Éthique Certification -->
                 <a href="https://www.udemy.com/certificate/UC-446e892f-c2dd-44b7-9b42-d6b72843f5ac/" target="_blank" class="block bg-white rounded-lg shadow-md p-4 md:p-6 card-hover">
                     <div class="flex items-center mb-3 md:mb-4">
@@ -361,168 +356,130 @@
         </div>
     </section>
 
-    <!-- Projects Section - Design Pro & Clean -->
-    <section class="py-16 bg-white">
+    <!-- Projects Section -->
+    <section class="py-12 md:py-16 bg-white">
         <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center mb-16">
-                <span class="text-indigo-600 font-semibold tracking-wider text-sm uppercase">Portfolio</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Projets Réalisés</h2>
-                <div class="w-20 h-1 bg-indigo-60 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-gray-800">Projets Réalisés</h2>
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 
                 <!-- Plateformes Gouvernementales -->
-                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="h-3 bg-indigo-600"></div>
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="p-3 bg-indigo-50 rounded-lg text-indigo-600">
-                                <i class="fas fa-university text-2xl"></i>
-                            </div>
-                            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded uppercase tracking-wide">Officiel</span>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border-t-4 border-blue-600 hover:shadow-2xl transition-all">
+                    <div class="bg-gradient-to-br from-blue-600 to-blue-700 p-6 text-white">
+                        <i class="fas fa-globe text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Plateformes Gouvernementales</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4 text-sm">Développement et déploiement de plateformes officielles pour le MESTFP avec Flask, PHP et intégration complète.</p>
+                        <div class="space-y-2 mb-4">
+                            <a href="https://portail.enseignementsecondaire.bj" target="_blank" class="flex items-center text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 p-2 rounded transition">
+                                <i class="fas fa-external-link-alt mr-2"></i>Portail MESTFP
+                            </a>
+                            <a href="https://mesftpdenonciation.enseignementsecondaire.bj" target="_blank" class="flex items-center text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 p-2 rounded transition">
+                                <i class="fas fa-external-link-alt mr-2"></i>Dénonciation
+                            </a>
+                            <a href="https://gestiondomaine.enseignementsecondaire.bj" target="_blank" class="flex items-center text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 p-2 rounded transition">
+                                <i class="fas fa-external-link-alt mr-2"></i>Gestion Domaine
+                            </a>
+                            <a href="https://gestioname.enseignementsecondaire.bj" target="_blank" class="flex items-center text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 p-2 rounded transition">
+                                <i class="fas fa-external-link-alt mr-2"></i>Gestion AME
+                            </a>
+                            <a href="https://elearning.enseignementsecondaire.bj/" target="_blank" class="flex items-center text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 p-2 rounded transition">
+                                <i class="fas fa-external-link-alt mr-2"></i>sɛ̀wɛ́ (E-Learning)
+                            </a>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">Plateformes Gouvernementales</h3>
-                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                            Écosystème de solutions numériques pour le MESTFP, optimisant la gestion administrative et éducative à l'échelle nationale.
-                        </p>
-                        
-                        <div class="space-y-3 mb-6 border-t border-gray-100 pt-4">
-                            <a href="https://gestioname.enseignementsecondaire.bj" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-indigo-600 transition-colors">
-                                <i class="fas fa-arrow-right text-xs mr-2 text-indigo-400"></i>Gestion AME
-                            </a>
-                            <a href="https://elearning.enseignementsecondaire.bj/" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-indigo-600 transition-colors">
-                                <i class="fas fa-arrow-right text-xs mr-2 text-indigo-400"></i>sɛ̀wɛ́ (E-Learning)
-                            </a>
-                            <a href="https://portail.enseignementsecondaire.bj" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-indigo-600 transition-colors">
-                                <i class="fas fa-arrow-right text-xs mr-2 text-indigo-400"></i>Portail MESTFP
-                            </a>
-                        </div>
-
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Laravel</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Flask</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Vue.js</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">Flask</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">PHP</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">Full Stack</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Modèle IA -->
-                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="h-3 bg-teal-600"></div>
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="p-3 bg-teal-50 rounded-lg text-teal-600">
-                                <i class="fas fa-brain text-2xl"></i>
-                            </div>
-                            <span class="text-xs font-bold text-teal-600 bg-teal-50 px-2 py-1 rounded uppercase tracking-wide">R&D</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors">Orientation Scolaire IA</h3>
-                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                            Algorithme prédictif analysant les performances académiques pour recommander les filières d'études optimales aux étudiants.
-                        </p>
+                
+                <!-- IA Orientation -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border-t-4 border-green-600 hover:shadow-2xl transition-all">
+                    <div class="bg-gradient-to-br from-green-600 to-green-700 p-6 text-white">
+                        <i class="fas fa-brain text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Modèle d'Orientation IA</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4 text-sm">Système intelligent d'orientation scolaire basé sur les performances académiques utilisant l'apprentissage automatique.</p>
                         <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Python</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Scikit-learn</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Data Science</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Python</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">Machine Learning</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">Deep Learning</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Cyber Security Tool -->
-                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="h-3 bg-rose-600"></div>
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="p-3 bg-rose-50 rounded-lg text-rose-600">
-                                <i class="fas fa-shield-virus text-2xl"></i>
-                            </div>
-                            <span class="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-1 rounded uppercase tracking-wide">Sécurité</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-rose-600 transition-colors">Outil de Surveillance</h3>
-                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                            Logiciel de monitoring avancé pour la détection d'activités suspectes, capture de processus et analyse comportementale en temps réel.
-                        </p>
+                
+                <!-- Outil Surveillance -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border-t-4 border-red-600 hover:shadow-2xl transition-all">
+                    <div class="bg-gradient-to-br from-red-600 to-red-700 p-6 text-white">
+                        <i class="fas fa-eye text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Outil de Surveillance</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4 text-sm">Système avancé de surveillance de processus et capture d'écran pour la sécurité informatique et le monitoring.</p>
                         <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">C++</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">WinAPI</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">System</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-semibold">Cybersécurité</span>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold">Monitoring</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-semibold">Windows API</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- E-Commerce -->
-                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="h-3 bg-amber-500"></div>
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="p-3 bg-amber-50 rounded-lg text-amber-600">
-                                <i class="fas fa-shopping-bag text-2xl"></i>
-                            </div>
-                            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded uppercase tracking-wide">Web</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-amber-600 transition-colors">Plateforme E-commerce</h3>
-                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                            Solution e-commerce complète intégrant gestion de stocks, suivi des commandes et tableau de bord analytique pour les ventes.
-                        </p>
+                
+                <!-- E-commerce -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border-t-4 border-yellow-600 hover:shadow-2xl transition-all">
+                    <div class="bg-gradient-to-br from-yellow-600 to-yellow-700 p-6 text-white">
+                        <i class="fas fa-shopping-cart text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Plateforme E-commerce</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4 text-sm">Plateforme complète de commerce électronique avec système de suivi des publicités et gestion avancée des commandes.</p>
                         <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="px-2 py-1 bg-gray-10 text-gray-600 text-xs rounded border border-gray-200">PHP 8</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">MySQL</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Payment API</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">E-commerce</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">PHP</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">MySQL</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Gestion App -->
-                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="h-3 bg-blue-600"></div>
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="p-3 bg-blue-50 rounded-lg text-blue-600">
-                                <i class="fas fa-chart-line text-2xl"></i>
-                            </div>
-                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded uppercase tracking-wide">SaaS</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">Systèmes de Gestion</h3>
-                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                            Architecture d'applications de gestion d'entreprise sur mesure, axée sur l'ergonomie et l'optimisation des flux de travail.
-                        </p>
+                <!-- Application Web de Gestion -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border-t-4 border-purple-600 hover:shadow-2xl transition-all">
+                    <div class="bg-gradient-to-br from-purple-600 to-purple-700 p-6 text-white">
+                        <i class="fas fa-tasks text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Système de Gestion</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4 text-sm">Application web de gestion administrative avec tableau de bord analytique et gestion multi-utilisateurs.</p>
                         <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-60 text-xs rounded border border-gray-200">React</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Node.js</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">PostgreSQL</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">PHP</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">MySQL</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Bootstrap</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Web Design -->
-                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="h-3 bg-purple-600"></div>
-                    <div class="p-8">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="p-3 bg-purple-50 rounded-lg text-purple-600">
-                                <i class="fas fa-layer-group text-2xl"></i>
-                            </div>
-                            <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded uppercase tracking-wide">Design</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">Sites Web & UX/UI</h3>
-                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
-                            Création d'expériences web immersives et responsives, alliant esthétique moderne et performance technique optimale.
-                        </p>
+                <!-- Portfolio & Blog -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border-t-4 border-indigo-600 hover:shadow-2xl transition-all">
+                    <div class="bg-gradient-to-br from-indigo-600 to-indigo-700 p-6 text-white">
+                        <i class="fas fa-blog text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Sites Web & Blogs</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-700 mb-4 text-sm">Conception et développement de sites web modernes, portfolios professionnels et blogs personnalisés.</p>
                         <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-20">Figma</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Tailwind CSS</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Animation</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-semibold">WordPress</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">HTML/CSS</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">JavaScript</span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- Education Section -->
-    <section class="py-12 md:py-16 bg-gray-50">
+    <section class="py-12 md:py-16 bg-gray-100">
         <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-gray-800">Formation</h2>
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -535,58 +492,106 @@
                             <p class="text-xs md:text-sm text-gray-600">2023 - 2025</p>
                         </div>
                     </div>
-                    <p class="text-sm md:text-base text-gray-700">Systèmes Informatiques et Logiciels</p>
                 </div>
-                
                 <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
                     <div class="flex items-center mb-2 md:mb-2">
-                        <i class="fas fa-school text-2xl md:text-3xl text-blue-600 mr-3 md:mr-4"></i>
+                        <i class="fas fa-graduation-cap text-2xl md:text-3xl text-purple-600 mr-3 md:mr-4"></i>
                         <div>
-                            <h3 class="text-lg md:text-xl font-bold text-gray-800">Baccalauréat Série C</h3>
-                            <p class="text-sm md:text-md text-blue-600 font-semibold">Lycée Technique</p>
-                            <p class="text-xs md:text-sm text-gray-600">2023</p>
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800">Première année de formation en Génie Logiciel</h3>
+                            <p class="text-sm md:text-md text-purple-600 font-semibold">Université IFRI</p>
+                            <p class="text-xs md:text-sm text-gray-600">2021 - 2023</p>
                         </div>
                     </div>
-                    <p class="text-sm md:text-base text-gray-700">Sciences Mathématiques et Physiques</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-2 md:mb-2">
+                        <i class="fas fa-graduation-cap text-2xl md:text-3xl text-purple-600 mr-3 md:mr-4"></i>
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800">Diplôme de Technicien en Installation & Maintenance Informatique (DT-IMI)</h3>
+                            <p class="text-sm md:text-md text-purple-600 font-semibold">Lycée Don Bosco</p>
+                            <p class="text-xs md:text-sm text-gray-600">2020 - 2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-2 md:mb-2">
+                        <i class="fas fa-graduation-cap text-2xl md:text-3xl text-purple-600 mr-3 md:mr-4"></i>
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800">BEPC</h3>
+                            <p class="text-sm md:text-md text-purple-600 font-semibold">Complexe scolaire Mahoudjro</p>
+                            <p class="text-xs md:text-sm text-gray-600">2016 - 2017</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Footer -->
-    <footer class="gradient-bg text-white py-12 md:py-16">
-        <div id="contact" class="container mx-auto px-4 md:px-6 text-center">
-            <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Collaborons ensemble !</h3>
-            <p class="text-base md:text-lg mb-8 md:mb-10 text-purple-200 max-w-2xl mx-auto">
-                Passionné par les défis techniques et l'innovation, je suis toujours ouvert aux nouvelles opportunités. Discutons de votre prochain projet.
+    <!-- Languages Section -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-gray-800">Langues</h2>
+            <div class="max-w-2xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-4 md:gap-6">
+                    <div class="text-center">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <i class="fas fa-language text-xl md:text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2">Français</h3>
+                        <p class="text-sm text-gray-600">Courant</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <i class="fas fa-globe-africa text-xl md:text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2">Fon</h3>
+                        <p class="text-sm text-gray-600">Intermédiaire</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <i class="fas fa-flag-usa text-xl md:text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2">Anglais</h3>
+                        <p class="text-sm text-gray-600">Débutant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8 md:py-12">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Collaborons ensemble !</h3>
+            <p class="text-base md:text-lg mb-6 md:mb-8 text-purple-200">
+                Passionné par les défis techniques et l'innovation, je suis toujours ouvert aux nouvelles opportunités.
             </p>
             
-            <div class="flex flex-wrap justify-center gap-4 md:gap-6 mb-10 md:mb-12">
-                <a href="tel:0169496885" class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm border border-white border-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-20 transition text-sm md:text-base flex items-center group">
-                    <i class="fas fa-phone mr-3 text-purple-300 group-hover:text-white"></i>01 69 49 68 85
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-6 md:mb-8">
+                <a href="tel:0169496885" class="bg-white bg-opacity-20 px-2 py-0.5 rounded-full hover:bg-opacity-30 transition text-sm md:px-6 md:py-3 md:text-base">
+                    <i class="fas fa-phone mr-1 md:mr-2"></i>01 69 49 68 85
                 </a>
-                <a href="https://wa.me/2290144220479" target="_blank" class="bg-green-500 px-6 py-3 rounded-full hover:bg-green-600 transition text-sm md:text-base shadow-lg transform hover:-translate-y-1 flex items-center">
-                    <i class="fab fa-whatsapp mr-3 text-white"></i>Discussion WhatsApp
+                <a href="https://wa.me/2290161086894" target="_blank" class="bg-green-500 px-2 py-0.5 rounded-full hover:bg-green-600 transition text-sm md:px-6 md:py-3 md:text-base">
+                    <i class="fab fa-whatsapp mr-1 md:mr-2"></i>0161086894
                 </a>
-        
+                <a href="mailto:ananivianney80@gmail.com" class="bg-white bg-opacity-20 px-2 py-0.5 rounded-full hover:bg-opacity-30 transition text-sm md:px-6 md:py-3 md:text-base">
+                    <i class="fas fa-envelope mr-1 md:mr-2"></i>ananivianney80@gmail.com
+                </a>
             </div>
             
-            <div class="flex justify-center gap-6 md:gap-8 mb-8 md:mb-10">
-                <a href="https://www.linkedin.com/in/vianney-anani-1845882a2" target="_blank" class="text-3xl hover:text-purple-300 transition transform hover:scale-110">
+            <div class="flex justify-center gap-4 md:gap-6 mb-6 md:mb-8">
+                <a href="https://www.linkedin.com/in/vianney-anani-1845882a2" target="_blank" class="text-2xl md:text-3xl hover:text-purple-200 transition">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://github.com/ANANI Vianneyaz/Portfolio" target="_blank" class="text-3xl hover:text-purple-300 transition transform hover:scale-110">
+                <a href="https://github.com/ANANI Vianneyaz/Portfolio" target="_blank" class="text-2xl md:text-3xl hover:text-purple-200 transition">
                     <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:ananivianney80@gmail.com" class="text-3xl hover:text-purple-300 transition transform hover:scale-110">
-                    <i class="fas fa-envelope"></i>
                 </a>
             </div>
             
             <p class="text-sm text-purple-200">
-                <i class="fas fa-map-marker-alt mr-2"></i>Hêvié, Akossavié - Bénin
+                <i class="fas fa-map-marker-alt mr-1 md:mr-2"></i>Hêvié, Akossavié - Bénin
             </p>
-            <p class="text-xs text-purple-300 mt-6 pt-6 border-t border-purple-800 border-opacity-30">© 2024 ANANI Mathieu Ange Vianney. Tous droits réservés.</p>
+            <p class="text-xs text-purple-300 mt-3 md:mt-4">© 2024 ANANI Mathieu Ange Vianney. Tous droits réservés.</p>
         </div>
     </footer>
 
@@ -607,6 +612,7 @@
 
             // Basculer le tiroir cliqué
             drawer.classList.toggle('open');
+            
             // Faire pivoter l'icône en fonction de l'état du tiroir
             if (drawer.classList.contains('open')) {
                 if (icon) icon.style.transform = 'rotate(180deg)';

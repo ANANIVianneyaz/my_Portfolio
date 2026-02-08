@@ -20,7 +20,7 @@
             background-color: #f9fafb; /* Gris très clair pour le fond */
         }
 
-        /* Gradient Pro pour Header/Footer */
+        /* Gradient Pro pour Header/Footer - Bleu Nuit Élégant */
         .gradient-bg {
             background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
         }
@@ -29,22 +29,14 @@
         html {
             scroll-behavior: smooth;
         }
-
-        /* Masquer la barre de défilement pour les carrousels tout en gardant la fonctionnalité */
-        .hide-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scroll {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
-        }
         
         /* Effets de survol des cartes */
-        .card-item {
+        .card-hover {
             transition: all 0.3s ease;
         }
-        .card-item:hover {
+        .card-hover:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
 
         /* Utilitaires d'animation d'entrée */
@@ -132,283 +124,168 @@
         </div>
     </section>
 
-    <!-- Skills Section Carousel (Slider) -->
+    <!-- Skills Section - Design Pro & Minimaliste (Statique) -->
     <section class="py-16 bg-gray-50 border-t border-gray-200">
-        <div class="container mx-auto px-4 md:px-6 relative">
-            <div class="text-center mb-12">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-16">
                 <span class="text-indigo-600 font-semibold tracking-wider text-sm uppercase">Expertise</span>
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Compétences Techniques</h2>
-                <div class="w-16 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
             </div>
             
-            <!-- Carousel Container -->
-            <div class="relative max-w-7xl mx-auto group">
-                <!-- Button Left (visible on desktop hover) -->
-                <button onclick="scrollContainer('skills-slider', 'left')" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 bg-white text-indigo-600 p-3 rounded-full shadow-lg hover:bg-indigo-50 focus:outline-none transition opacity-0 group-hover:opacity-100 hidden md:block">
-                    <i class="fas fa-chevron-left text-xl"></i>
-                </button>
-
-                <!-- Scrollable Area -->
-                <div id="skills-slider" class="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scroll px-4">
-                    
-                    <!-- Card 1: Backend -->
-                    <div class="min-w-[300px] md:min-w-[350px] bg-white p-8 rounded-xl shadow-sm border border-gray-100 snap-center card-item">
-                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-6">
-                            <i class="fas fa-server text-xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Backend & Langages -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 mr-4">
+                            <i class="fas fa-server text-lg"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Backend & Langages</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1"><span class="text-sm font-medium">PHP / Laravel</span><span class="text-xs text-indigo-600">Expert</span></div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5"><div class="bg-indigo-600 h-1.5 rounded-full" style="width: 95%"></div></div>
+                        <h3 class="text-xl font-bold text-gray-900">Backend & Langages</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-700 font-medium">PHP / Laravel</span>
+                                <span class="text-gray-400 text-sm">Expert</span>
                             </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span class="text-sm font-medium">Python / Flask</span><span class="text-xs text-indigo-600">Avancé</span></div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5"><div class="bg-indigo-600 h-1.5 rounded-full" style="width: 85%"></div></div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 95%"></div>
                             </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span class="text-sm font-medium">Java / C++</span><span class="text-xs text-indigo-600">Intermédiaire</span></div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5"><div class="bg-gray-300 h-1.5 rounded-full" style="width: 70%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-700 font-medium">Python / Flask</span>
+                                <span class="text-gray-400 text-sm">Avancé</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-700 font-medium">Java / C++</span>
+                                <span class="text-gray-400 text-sm">Intermédiaire</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-gray-400 h-1.5 rounded-full" style="width: 70%"></div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Card 2: Frontend -->
-                    <div class="min-w-[300px] md:min-w-[350px] bg-white p-8 rounded-xl shadow-sm border border-gray-100 snap-center card-item">
-                        <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center text-teal-600 mb-6">
-                            <i class="fas fa-laptop-code text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Frontend & CMS</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1"><span class="text-sm font-medium">HTML / CSS / Tailwind</span><span class="text-xs text-teal-600">Expert</span></div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5"><div class="bg-teal-600 h-1.5 rounded-full" style="width: 98%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span class="text-sm font-medium">JavaScript</span><span class="text-xs text-teal-600">Expert</span></div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5"><div class="bg-teal-600 h-1.5 rounded-full" style="width: 90%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span class="text-sm font-medium">WordPress / Web Design</span><span class="text-xs text-teal-600">Expert</span></div>
-                                <div class="w-full bg-gray-100 rounded-full h-1.5"><div class="bg-teal-600 h-1.5 rounded-full" style="width: 92%"></div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3: Security -->
-                    <div class="min-w-[300px] md:min-w-[350px] bg-white p-8 rounded-xl shadow-sm border border-gray-100 snap-center card-item">
-                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center text-red-600 mb-6">
-                            <i class="fas fa-shield-alt text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Cybersécurité</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center p-2 bg-red-50 rounded border border-red-100">
-                                <i class="fas fa-check-circle text-red-500 mr-3"></i><span class="text-sm">Pentesting & Audit</span>
-                            </div>
-                            <div class="flex items-center p-2 bg-red-50 rounded border border-red-100">
-                                <i class="fas fa-check-circle text-red-500 mr-3"></i><span class="text-sm">Analyse de Vulnérabilités</span>
-                            </div>
-                            <div class="flex items-center p-2 bg-red-50 rounded border border-red-100">
-                                <i class="fas fa-check-circle text-red-500 mr-3"></i><span class="text-sm">Sécurité Réseau</span>
-                            </div>
-                            <div class="flex items-center p-2 bg-red-50 rounded border border-red-100">
-                                <i class="fas fa-check-circle text-red-500 mr-3"></i><span class="text-sm">Hacking Éthique</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4: Tools -->
-                    <div class="min-w-[300px] md:min-w-[350px] bg-white p-8 rounded-xl shadow-sm border border-gray-100 snap-center card-item">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-6">
-                            <i class="fas fa-tools text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Outils & DevOps</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Git / GitHub</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Docker</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Linux</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">MySQL / PostgreSQL</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">VS Code</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Windows API</span>
-                        </div>
-                    </div>
-
                 </div>
 
-                <!-- Button Right -->
-                <button onclick="scrollContainer('skills-slider', 'right')" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 bg-white text-indigo-600 p-3 rounded-full shadow-lg hover:bg-indigo-50 focus:outline-none transition opacity-0 group-hover:opacity-100 hidden md:block">
-                    <i class="fas fa-chevron-right text-xl"></i>
-                </button>
-            </div>
-            
-            <!-- Mobile indication -->
-            <div class="flex justify-center mt-4 md:hidden text-gray-400 text-sm">
-                <i class="fas fa-arrows-alt-h mr-2"></i> Glisser pour voir plus
+                <!-- Frontend & CMS -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 mr-4">
+                            <i class="fas fa-laptop-code text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Frontend & CMS</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-700 font-medium">HTML5 / CSS3 / Tailwind</span>
+                                <span class="text-gray-400 text-sm">Expert</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-700 font-medium">JavaScript</span>
+                                <span class="text-gray-400 text-sm">Expert</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-gray-700 font-medium">WordPress / CMS</span>
+                                <span class="text-gray-400 text-sm">Expert</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5">
+                                <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cybersécurité -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 mr-4">
+                            <i class="fas fa-shield-alt text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Cybersécurité</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center p-3 bg-gray-50 rounded border border-gray-100">
+                            <i class="fas fa-check text-green-500 mr-3 text-sm"></i>
+                            <span class="text-gray-700 text-sm font-medium">Pentesting</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded border border-gray-100">
+                            <i class="fas fa-check text-green-500 mr-3 text-sm"></i>
+                            <span class="text-gray-700 text-sm font-medium">Audit Vulnérabilités</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded border border-gray-100">
+                            <i class="fas fa-check text-green-500 mr-3 text-sm"></i>
+                            <span class="text-gray-700 text-sm font-medium">Sécurité Réseau</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded border border-gray-100">
+                            <i class="fas fa-check text-green-500 mr-3 text-sm"></i>
+                            <span class="text-gray-700 text-sm font-medium">Hacking Éthique</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outils & DevOps -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 mr-4">
+                            <i class="fas fa-tools text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Outils & Environnement</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Git</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Docker</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Linux</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">MySQL</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">VS Code</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Windows API</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm font-medium">Réseau</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section Carousel (Slider) -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4 md:px-6 relative">
-            <div class="text-center mb-12">
-                <span class="text-indigo-600 font-semibold tracking-wider text-sm uppercase">Portfolio</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Projets Réalisés</h2>
-                <div class="w-16 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <!-- Carousel Container -->
-            <div class="relative max-w-7xl mx-auto group">
-                
-                <!-- Button Left -->
-                <button onclick="scrollContainer('projects-slider', 'left')" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 bg-white text-indigo-600 p-3 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none transition opacity-0 group-hover:opacity-100 hidden md:block border border-gray-100">
-                    <i class="fas fa-chevron-left text-xl"></i>
-                </button>
-
-                <!-- Scrollable Area -->
-                <div id="projects-slider" class="flex overflow-x-auto gap-6 pb-12 snap-x snap-mandatory hide-scroll px-4">
+    <!-- Experience Section -->
+    <section class="py-12 md:py-16 bg-white border-t border-gray-200">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-gray-800">Expérience Professionnelle</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 md:p-8 mb-6 md:mb-8 card-hover shadow-sm border border-blue-100">
+                    <div class="flex items-start justify-between flex-wrap mb-3 md:mb-4">
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-1 md:mb-2">Développeur Web</h3>
+                            <p class="text-sm md:text-base text-indigo-600 font-semibold mb-1 md:mb-2">Ministère des Enseignements Secondaire, Technique et de la Formation Professionnelle (MESTFP)</p>
+                            <p class="text-xs md:text-base text-gray-600"><i class="fas fa-calendar mr-1 md:mr-2"></i>Mars 2025 - Juin 2025 (4 mois)</p>
+                            <p class="text-xs md:text-base text-gray-600"><i class="fas fa-map-marker-alt mr-1 md:mr-2"></i>Cotonou, Littoral, Bénin</p>
+                        </div>
+                    </div>
                     
-                    <!-- Projet 1 -->
-                    <div class="min-w-[320px] md:min-w-[380px] bg-white rounded-xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 snap-center flex-shrink-0">
-                        <div class="h-2 bg-indigo-600"></div>
-                        <div class="p-8 flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="p-3 bg-indigo-50 rounded-lg text-indigo-600">
-                                    <i class="fas fa-university text-2xl"></i>
-                                </div>
-                                <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded uppercase">Officiel</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">Plateformes Gouvernementales</h3>
-                            <p class="text-gray-600 mb-6 text-sm flex-grow">
-                                Écosystème de solutions numériques pour le MESTFP (Portail, Dénonciation, Gestion Domaine) optimisant la gestion administrative.
-                            </p>
-                            <div class="space-y-3 mb-6 border-t border-gray-100 pt-4">
-                                <a href="https://gestioname.enseignementsecondaire.bj" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-indigo-600 transition">
-                                    <i class="fas fa-link text-xs mr-2 text-indigo-400"></i>Gestion AME
-                                </a>
-                                <a href="https://elearning.enseignementsecondaire.bj/" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-indigo-600 transition">
-                                    <i class="fas fa-link text-xs mr-2 text-indigo-400"></i>sɛ̀wɛ́ (E-Learning)
-                                </a>
-                            </div>
-                        </div>
+                    <div class="text-sm md:text-base text-gray-700 mb-3 md:mb-4 leading-relaxed">
+                        <p class="mb-2">Lors de ce stage décisif, j'ai participé activement au développement de l'écosystème numérique du ministère, contribuant à la modernisation des processus éducatifs nationaux.</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Conception et déploiement d'applications web sécurisées (PHP, MySQL, Bootstrap).</li>
+                            <li>Collaboration sur la plateforme stratégique "Gestion AME" pour le suivi des carrières.</li>
+                            <li>Optimisation des performances et audits de sécurité des portails existants.</li>
+                        </ul>
                     </div>
-
-                    <!-- Projet 2 -->
-                    <div class="min-w-[320px] md:min-w-[380px] bg-white rounded-xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 snap-center flex-shrink-0">
-                        <div class="h-2 bg-teal-600"></div>
-                        <div class="p-8 flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="p-3 bg-teal-50 rounded-lg text-teal-600">
-                                    <i class="fas fa-brain text-2xl"></i>
-                                </div>
-                                <span class="text-xs font-bold text-teal-600 bg-teal-50 px-2 py-1 rounded uppercase">IA & Data</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">Orientation Scolaire IA</h3>
-                            <p class="text-gray-600 mb-6 text-sm flex-grow">
-                                Modèle d'intelligence artificielle analysant les performances académiques pour recommander les meilleures filières d'études.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mt-auto">
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Python</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Machine Learning</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Projet 3 -->
-                    <div class="min-w-[320px] md:min-w-[380px] bg-white rounded-xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 snap-center flex-shrink-0">
-                        <div class="h-2 bg-rose-600"></div>
-                        <div class="p-8 flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="p-3 bg-rose-50 rounded-lg text-rose-600">
-                                    <i class="fas fa-shield-virus text-2xl"></i>
-                                </div>
-                                <span class="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-1 rounded uppercase">Sécurité</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">Outil de Surveillance</h3>
-                            <p class="text-gray-600 mb-6 text-sm flex-grow">
-                                Logiciel de monitoring avancé pour la détection d'activités suspectes, capture de processus et analyse comportementale.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mt-auto">
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">C++</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">WinAPI</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Projet 4 -->
-                    <div class="min-w-[320px] md:min-w-[380px] bg-white rounded-xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 snap-center flex-shrink-0">
-                        <div class="h-2 bg-amber-500"></div>
-                        <div class="p-8 flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="p-3 bg-amber-50 rounded-lg text-amber-600">
-                                    <i class="fas fa-shopping-bag text-2xl"></i>
-                                </div>
-                                <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded uppercase">E-Commerce</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">Plateforme E-commerce</h3>
-                            <p class="text-gray-600 mb-6 text-sm flex-grow">
-                                Solution complète de vente en ligne avec gestion de stocks, panier dynamique et système de paiement intégré.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mt-auto">
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">PHP 8</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">MySQL</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Projet 5 -->
-                    <div class="min-w-[320px] md:min-w-[380px] bg-white rounded-xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 snap-center flex-shrink-0">
-                        <div class="h-2 bg-blue-600"></div>
-                        <div class="p-8 flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="p-3 bg-blue-50 rounded-lg text-blue-600">
-                                    <i class="fas fa-chart-line text-2xl"></i>
-                                </div>
-                                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded uppercase">SaaS</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">Systèmes de Gestion</h3>
-                            <p class="text-gray-600 mb-6 text-sm flex-grow">
-                                Architecture d'applications de gestion d'entreprise sur mesure, axée sur l'ergonomie et l'optimisation des flux.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mt-auto">
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">React</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Node.js</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Projet 6 -->
-                    <div class="min-w-[320px] md:min-w-[380px] bg-white rounded-xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 snap-center flex-shrink-0">
-                        <div class="h-2 bg-purple-600"></div>
-                        <div class="p-8 flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="p-3 bg-purple-50 rounded-lg text-purple-600">
-                                    <i class="fas fa-layer-group text-2xl"></i>
-                                </div>
-                                <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded uppercase">Design</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">Sites Web & UX/UI</h3>
-                            <p class="text-gray-600 mb-6 text-sm flex-grow">
-                                Création d'expériences web immersives et responsives, alliant esthétique moderne et performance technique.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mt-auto">
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Figma</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">Tailwind</span>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-
-                <!-- Button Right -->
-                <button onclick="scrollContainer('projects-slider', 'right')" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 bg-white text-indigo-600 p-3 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none transition opacity-0 group-hover:opacity-100 hidden md:block border border-gray-100">
-                    <i class="fas fa-chevron-right text-xl"></i>
-                </button>
-            </div>
-
-            <!-- Mobile indication -->
-            <div class="flex justify-center mt-4 md:hidden text-gray-400 text-sm">
-                <i class="fas fa-arrows-alt-h mr-2"></i> Glisser pour découvrir
             </div>
         </div>
     </section>
@@ -418,6 +295,7 @@
         <div class="container mx-auto px-4 md:px-6">
             <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-gray-800">Certifications</h2>
             <div class="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                <!-- Hacking Éthique -->
                 <a href="https://www.udemy.com/certificate/UC-446e892f-c2dd-44b7-9b42-d6b72843f5ac/" target="_blank" class="block bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition card-item">
                     <div class="flex items-center mb-4">
                         <i class="fas fa-shield-alt text-3xl text-red-600 mr-4"></i>
@@ -429,6 +307,7 @@
                     <span class="text-indigo-600 text-sm font-medium">Voir le certificat <i class="fas fa-arrow-right text-xs ml-1"></i></span>
                 </a>
                 
+                <!-- PHP MySQL -->
                 <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-8e05a855-952f-40d1-981e-a998ad540a6e.pdf" target="_blank" class="block bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition card-item">
                     <div class="flex items-center mb-4">
                         <i class="fas fa-database text-3xl text-green-600 mr-4"></i>
@@ -440,6 +319,7 @@
                     <span class="text-indigo-600 text-sm font-medium">Voir le certificat <i class="fas fa-arrow-right text-xs ml-1"></i></span>
                 </a>
                 
+                <!-- WordPress -->
                 <a href="https://www.udemy.com/certificate/UC-7e575560-331e-4bac-92bb-22948d6b90b2/" target="_blank" class="block bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition card-item">
                     <div class="flex items-center mb-4">
                         <i class="fab fa-wordpress text-3xl text-blue-800 mr-4"></i>
@@ -454,12 +334,204 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Projects Section - Design Pro & Clean (Statique) -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-16">
+                <span class="text-indigo-600 font-semibold tracking-wider text-sm uppercase">Portfolio</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Projets Réalisés</h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                
+                <!-- Plateformes Gouvernementales -->
+                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-3 bg-indigo-600"></div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-indigo-50 rounded-lg text-indigo-600">
+                                <i class="fas fa-university text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded uppercase tracking-wide">Officiel</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">Plateformes Gouvernementales</h3>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                            Écosystème de solutions numériques pour le MESTFP, optimisant la gestion administrative et éducative à l'échelle nationale.
+                        </p>
+                        
+                        <div class="space-y-3 mb-6 border-t border-gray-100 pt-4">
+                            <a href="https://gestioname.enseignementsecondaire.bj" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-indigo-600 transition-colors">
+                                <i class="fas fa-arrow-right text-xs mr-2 text-indigo-400"></i>Gestion AME
+                            </a>
+                            <a href="https://elearning.enseignementsecondaire.bj/" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-indigo-600 transition-colors">
+                                <i class="fas fa-arrow-right text-xs mr-2 text-indigo-400"></i>sɛ̀wɛ́ (E-Learning)
+                            </a>
+                            <a href="https://portail.enseignementsecondaire.bj" target="_blank" class="flex items-center text-sm text-gray-600 hover:text-indigo-600 transition-colors">
+                                <i class="fas fa-arrow-right text-xs mr-2 text-indigo-400"></i>Portail MESTFP
+                            </a>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Laravel</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Flask</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Vue.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modèle IA -->
+                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-3 bg-teal-600"></div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-teal-50 rounded-lg text-teal-600">
+                                <i class="fas fa-brain text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-teal-600 bg-teal-50 px-2 py-1 rounded uppercase tracking-wide">R&D</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors">Orientation Scolaire IA</h3>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                            Algorithme prédictif analysant les performances académiques pour recommander les filières d'études optimales aux étudiants.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Python</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Scikit-learn</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Data Science</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cyber Security Tool -->
+                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-3 bg-rose-600"></div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-rose-50 rounded-lg text-rose-600">
+                                <i class="fas fa-shield-virus text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-1 rounded uppercase tracking-wide">Sécurité</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-rose-600 transition-colors">Outil de Surveillance</h3>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                            Logiciel de monitoring avancé pour la détection d'activités suspectes, capture de processus et analyse comportementale en temps réel.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">C++</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">WinAPI</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">System</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-Commerce -->
+                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-3 bg-amber-500"></div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-amber-50 rounded-lg text-amber-600">
+                                <i class="fas fa-shopping-bag text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded uppercase tracking-wide">Web</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-amber-600 transition-colors">Plateforme E-commerce</h3>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                            Solution e-commerce complète intégrant gestion de stocks, suivi des commandes et tableau de bord analytique pour les ventes.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">PHP 8</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">MySQL</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Payment API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestion App -->
+                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-3 bg-blue-600"></div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-blue-50 rounded-lg text-blue-600">
+                                <i class="fas fa-chart-line text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded uppercase tracking-wide">SaaS</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">Systèmes de Gestion</h3>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                            Architecture d'applications de gestion d'entreprise sur mesure, axée sur l'ergonomie et l'optimisation des flux de travail.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">React</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Node.js</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Design -->
+                <div class="group bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="h-3 bg-purple-600"></div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-purple-50 rounded-lg text-purple-600">
+                                <i class="fas fa-layer-group text-2xl"></i>
+                            </div>
+                            <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded uppercase tracking-wide">Design</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">Sites Web & UX/UI</h3>
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                            Création d'expériences web immersives et responsives, alliant esthétique moderne et performance technique optimale.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Figma</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Tailwind CSS</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">Animation</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="py-12 md:py-16 bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-gray-800">Formation</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-2 md:mb-2">
+                        <i class="fas fa-graduation-cap text-2xl md:text-3xl text-indigo-600 mr-3 md:mr-4"></i>
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800">Licence L3 SIL</h3>
+                            <p class="text-sm md:text-md text-indigo-600 font-semibold">Université ESCAE-Bénin</p>
+                            <p class="text-xs md:text-sm text-gray-600">2023 - 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700">Systèmes Informatiques et Logiciels</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-2 md:mb-2">
+                        <i class="fas fa-school text-2xl md:text-3xl text-blue-600 mr-3 md:mr-4"></i>
+                        <div>
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800">Baccalauréat Série C</h3>
+                            <p class="text-sm md:text-md text-blue-600 font-semibold">Lycée Technique</p>
+                            <p class="text-xs md:text-sm text-gray-600">2023</p>
+                        </div>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700">Sciences Mathématiques et Physiques</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
     <footer class="gradient-bg text-white py-12 md:py-16">
         <div id="contact" class="container mx-auto px-4 md:px-6 text-center">
             <h3 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Collaborons ensemble !</h3>
             <p class="text-base md:text-lg mb-8 md:mb-10 text-purple-200 max-w-2xl mx-auto">
-                Passionné par les défis techniques et l'innovation, je suis toujours ouvert aux nouvelles opportunités.
+                Passionné par les défis techniques et l'innovation, je suis toujours ouvert aux nouvelles opportunités. Discutons de votre prochain projet.
             </p>
             
             <div class="flex flex-wrap justify-center gap-4 md:gap-6 mb-10 md:mb-12">
@@ -469,6 +541,7 @@
                 <a href="https://wa.me/2290144220479" target="_blank" class="bg-green-500 px-6 py-3 rounded-full hover:bg-green-600 transition text-sm md:text-base shadow-lg transform hover:-translate-y-1 flex items-center">
                     <i class="fab fa-whatsapp mr-3 text-white"></i>Discussion WhatsApp
                 </a>
+        
             </div>
             
             <div class="flex justify-center gap-6 md:gap-8 mb-8 md:mb-10">
@@ -491,32 +564,14 @@
     </footer>
 
     <script>
-        // Fonction simple pour faire défiler les conteneurs
-        function scrollContainer(containerId, direction) {
-            const container = document.getElementById(containerId);
-            const scrollAmount = 400; // Quantité de défilement en pixels
-            
-            if (direction === 'left') {
-                container.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            } else {
-                container.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Animation au chargement
+        // Animer les éléments avec la classe 'animate-fadeInUp' au chargement de la page
         document.addEventListener('DOMContentLoaded', () => {
             const elements = document.querySelectorAll('.animate-fadeInUp');
             elements.forEach((el, index) => {
                 setTimeout(() => {
                     el.style.opacity = '1';
                     el.style.transform = 'translateY(0)';
-                }, index * 200);
+                }, index * 200); // Échelonner l'animation
             });
         });
     </script>
